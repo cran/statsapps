@@ -4,7 +4,8 @@ test_that("all app.R files parse", {
     "distributions",
     "linear_reg",
     "permutation",
-    "sums_squares"
+    "sums_squares",
+    "power_precision"
   )
 
   app_dirs <- system.file("apps", app_names, package = "statsapps")
@@ -37,9 +38,9 @@ test_that("shared app settings define expected plotting helpers", {
   settings_env <- new.env(parent = baseenv())
   source(settings_file, local = settings_env)
 
-  expect_equal(settings_env$statsapps_plot_base_size, 16)
+  expect_identical(settings_env$statsapps_plot_base_size, 16)
   expect_s3_class(settings_env$statsapps_plot_theme(), "theme")
-  expect_equal(
+  expect_identical(
     settings_env$statsapps_plot_theme_code(),
     "theme_classic(base_size = 16)"
   )
